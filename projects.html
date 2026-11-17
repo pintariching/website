@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — pintariching</title>
+  <meta name="description" content="Projects and portfolio of pintariching — compilers, game engine tech, graphics and systems programming in Rust.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+</head>
+<body>
+  <div class="bg-fx">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="grid"></div>
+  </div>
+
+  <nav class="nav">
+    <a class="logo" href="index.html"><span class="crab">🦀</span> pintariching</a>
+    <ul>
+      <li><a href="index.html">~/home</a></li>
+      <li><a href="projects.html">~/projects</a></li>
+      <li><a href="blog.html">~/blog</a></li>
+      <li><a href="contact.html">~/contact</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <div class="container">
+      <p class="section-label">// portfolio</p>
+      <h2 class="section-title">Projects &amp; experiments</h2>
+      <p style="color:var(--muted);max-width:640px;margin-bottom:2.5rem">
+        Everything here is open source. Compilers, physics engines, GPU simulations and the occasional
+        industrial automation tool — mostly in Rust.
+      </p>
+      <div class="filter-row" id="filters"></div>
+      <div class="grid-3" id="project-grid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span>© <span id="year"></span> pintariching — compiled with 0 dependencies</span>
+      <div class="socials">
+        <a href="https://github.com/pintariching">github</a>
+        <a href="contact.html">contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/projects-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    const grid = document.getElementById("project-grid");
+    const filterRow = document.getElementById("filters");
+
+    function cardHtml(p) {
+      return `
+        <div class="card reveal" data-category="${p.category}">
+          <h3><a href="${p.url}">${p.name}</a></h3>
+          <p>${p.description}</p>
+          <div class="meta">
+            <span><span class="lang-dot" style="background:${p.langColor}"></span> ${p.language}</span>
+            ${p.stars ? `<span class="stars">★ ${p.stars.toLocaleString()}</span>` : ""}
+          </div>
+          <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        </div>`;
+    }
+
+    function render(cat) {
+      const items = cat === "all" ? PROJECTS : PROJECTS.filter(p => p.category === cat);
+      grid.innerHTML = items.map(cardHtml).join("");
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+    }
+
+    CATEGORIES.forEach((c, i) => {
+      const btn = document.createElement("button");
+      btn.className = "filter-btn" + (i === 0 ? " active" : "");
+      btn.textContent = c.label;
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        render(c.id);
+      });
+      filterRow.appendChild(btn);
+    });
+
+    render("all");
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pintariching — I rewrite things in Rust</title>
+  <meta name="description" content="pintariching — Rust developer. Compilers, game engine tech, graphics and systems programming.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+</head>
+<body>
+  <div class="bg-fx">
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="grid"></div>
+  </div>
+
+  <nav class="nav">
+    <a class="logo" href="index.html"><span class="crab">🦀</span> pintariching</a>
+    <ul>
+      <li><a href="index.html">~/home</a></li>
+      <li><a href="projects.html">~/projects</a></li>
+      <li><a href="blog.html">~/blog</a></li>
+      <li><a href="contact.html">~/contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <p class="kicker">$ whoami</p>
+          <h1>Hi, I'm <span class="accent">pintariching</span>.<br>I rewrite things in Rust.</h1>
+          <p class="typed-line">&gt; <span id="typed"></span><span class="cursor">_</span></p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="projects.html">view projects →</a>
+            <a class="btn btn-ghost" href="blog.html">read the blog</a>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="term-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="term-title">pintariching@dev: ~</span>
+          </div>
+          <div class="term-body">
+            <div><span class="prompt">❯</span> <span class="cmd">cargo run --release</span></div>
+            <div class="out">&nbsp;&nbsp;Compiling svelte v0.0.0 → <span class="hl">rustle</span></div>
+            <div class="out">&nbsp;&nbsp;Compiling tailwind v0.0.0 → <span class="hl">railwind</span></div>
+            <div class="out">&nbsp;&nbsp;Compiling oceans v0.0.0 → <span class="hl">wgpu-ocean</span></div>
+            <div><span class="prompt">❯</span> <span class="cmd">status --now</span></div>
+            <div class="out">&nbsp;&nbsp;<span class="hl">●</span> compiling something, probably</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <p class="section-label">// about</p>
+      <div class="about-grid">
+        <div>
+          <h2 class="section-title">Systems programmer with a compiler habit</h2>
+          <p>
+            I'm a developer who lives in <strong>Rust</strong>. My happy place is taking a tool people
+            use every day and rebuilding its engine from scratch — faster, safer, and with better errors.
+          </p>
+          <p>
+            That obsession produced <strong>rustle</strong> (a Svelte compiler in Rust) and
+            <strong>railwind</strong> (a Tailwind compiler in Rust), plus a growing pile of
+            <strong>Bevy</strong> ecosystem work: physics, cloth simulation, pathfinding and mesh tooling.
+            When I'm not writing compilers, I'm pushing pixels with <strong>wgpu</strong>, talking to
+            industrial PLCs, or building cross-platform tools.
+          </p>
+          <a class="btn btn-ghost" href="contact.html">get in touch</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">2</div><div class="lbl">compilers rewritten</div></div>
+          <div class="stat"><div class="num">1.6k+</div><div class="lbl">GitHub stars</div></div>
+          <div class="stat"><div class="num">20</div><div class="lbl">public repos</div></div>
+          <div class="stat"><div class="num">∞</div><div class="lbl">borrow checker fights won</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">// featured work</p>
+      <h2 class="section-title">Things I've built</h2>
+      <div class="grid-3" id="featured-projects"></div>
+      <div style="margin-top:2rem">
+        <a class="btn btn-ghost" href="projects.html">see all projects →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span>© <span id="year"></span> pintariching — compiled with 0 dependencies</span>
+      <div class="socials">
+        <a href="https://github.com/pintariching">github</a>
+        <a href="contact.html">contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/projects-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // render featured projects on the home page
+    const wrap = document.getElementById("featured-projects");
+    PROJECTS.filter(p => p.featured).slice(0, 4).forEach(p => {
+      wrap.insertAdjacentHTML("beforeend", `
+        <div class="card reveal">
+          <h3><a href="${p.url}">${p.name}</a></h3>
+          <p>${p.description}</p>
+          <div class="meta">
+            <span><span class="lang-dot" style="background:${p.langColor}"></span> ${p.language}</span>
+            ${p.stars ? `<span class="stars">★ ${p.stars.toLocaleString()}</span>` : ""}
+          </div>
+          <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        </div>`);
+    });
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+  </script>
+</body>
+</html>

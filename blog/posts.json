@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello, world — why I rewrite things in Rust",
+    "date": "2026-01-10",
+    "tags": ["rust", "meta"],
+    "excerpt": "First post on the new site: what I work on, why compilers in Rust are fun, and what's coming next."
+  },
+  {
+    "slug": "writing-a-css-compiler",
+    "title": "What I learned writing a CSS compiler in Rust",
+    "date": "2026-01-12",
+    "tags": ["rust", "compilers", "css"],
+    "excerpt": "Notes from building railwind: parsing Tailwind classes, generating utility CSS, and why speed actually matters here."
+  }
+]
