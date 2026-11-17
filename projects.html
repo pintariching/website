@@ -33,10 +33,9 @@
       <p class="section-label">// portfolio</p>
       <h2 class="section-title">Projects &amp; experiments</h2>
       <p style="color:var(--muted);max-width:640px;margin-bottom:2.5rem">
-        Everything here is open source. Compilers, physics engines, GPU simulations and the occasional
-        industrial automation tool — mostly in Rust.
+        Everything here is written by me and open source. Compilers built in Rust — because if a
+        tool runs on every save, it should be fast.
       </p>
-      <div class="filter-row" id="filters"></div>
       <div class="grid-3" id="project-grid"></div>
     </div>
   </section>
@@ -55,11 +54,10 @@
   <script src="assets/js/main.js"></script>
   <script>
     const grid = document.getElementById("project-grid");
-    const filterRow = document.getElementById("filters");
 
     function cardHtml(p) {
       return `
-        <div class="card reveal" data-category="${p.category}">
+        <div class="card reveal">
           <h3><a href="${p.url}">${p.name}</a></h3>
           <p>${p.description}</p>
           <div class="meta">
@@ -70,25 +68,8 @@
         </div>`;
     }
 
-    function render(cat) {
-      const items = cat === "all" ? PROJECTS : PROJECTS.filter(p => p.category === cat);
-      grid.innerHTML = items.map(cardHtml).join("");
-      document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
-    }
-
-    CATEGORIES.forEach((c, i) => {
-      const btn = document.createElement("button");
-      btn.className = "filter-btn" + (i === 0 ? " active" : "");
-      btn.textContent = c.label;
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        render(c.id);
-      });
-      filterRow.appendChild(btn);
-    });
-
-    render("all");
+    grid.innerHTML = PROJECTS.map(cardHtml).join("");
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
   </script>
 </body>
 </html>

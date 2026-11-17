@@ -10,8 +10,9 @@ I'm **pintariching** — a developer who spends most of their time in *Rust*, bu
 
 - **rustle** — the Svelte compiler, rewritten in Rust
 - **railwind** — the Tailwind CSS compiler, rewritten in Rust
-- **Bevy ecosystem** — physics, cloth simulation, pathfinding, outlines and more
-- **wgpu-ocean** — FFT ocean simulation on the GPU
+- This very site — zero dependencies, hand-rolled HTML/CSS/JS
+
+I also spend a lot of time in the game-engine and graphics world — engines like **Bevy** are a great source of ideas (and blog posts).
 
 ## Why compilers?
 

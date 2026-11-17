@@ -1,5 +1,19 @@
 [
   {
+    "slug": "bevy-ecs-changed-how-i-think",
+    "title": "Bevy's ECS changed how I think about game code",
+    "date": "2026-11-17",
+    "tags": ["bevy", "rust", "gamedev"],
+    "excerpt": "Entities, components and systems explained — why composition beats inheritance, how automatic parallelism works, and where the real trade-off hides."
+  },
+  {
+    "slug": "five-rust-lessons-from-writing-compilers",
+    "title": "Five things the borrow checker taught me about writing compilers",
+    "date": "2026-11-16",
+    "tags": ["rust", "compilers"],
+    "excerpt": "Arena allocation, unrepresentable states, error design and more — lessons from building rustle and railwind."
+  },
+  {
     "slug": "hello-world",
     "title": "Hello, world — why I rewrite things in Rust",
     "date": "2026-01-10",

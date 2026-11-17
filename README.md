@@ -35,8 +35,8 @@ blockquotes, and horizontal rules.
 
 ## Managing projects
 
-Edit `assets/js/projects-data.js`. Each entry has a `category` (used by the filter
-buttons on the projects page) and a `featured` flag (featured entries appear on the
+Edit `assets/js/projects-data.js`. Each entry needs a `name`, `url`, `description`,
+`language`, `langColor`, `tags`, and a `featured` flag (featured entries appear on the
 home page).
 
 ## Local preview

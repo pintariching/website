@@ -7,9 +7,9 @@
     const phrases = [
       "rewrote Svelte in Rust.",
       "rewrote Tailwind in Rust.",
-      "build physics engines for Bevy.",
-      "simulate oceans with wgpu.",
-      "talk to Siemens PLCs from Rust.",
+      "think parsers are fun.",
+      "care about fast web tooling.",
+      "read other people's source for breakfast.",
       "probably compiling something right now."
     ];
     let pi = 0, ci = 0, deleting = false;
