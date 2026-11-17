@@ -11,6 +11,10 @@
   const listEl = document.getElementById("post-list");
   const articleEl = document.getElementById("article");
 
+  // blog.html lives at the site root; post.html lives inside blog/.
+  // Resolve data paths relative to the current page.
+  const BASE = location.pathname.includes("/blog/") ? "" : "blog/";
+
   function fmtDate(iso) {
     const d = new Date(iso + "T00:00:00");
     return d.toLocaleDateString(undefined, {
@@ -26,7 +30,7 @@
 
   // ----- blog.html: post list -----
   if (listEl) {
-    fetch("posts.json")
+    fetch(`${BASE}posts.json`)
       .then((r) => {
         if (!r.ok) throw new Error("posts.json not found");
         return r.json();
@@ -67,11 +71,11 @@
       return;
     }
 
-    fetch("posts.json")
+    fetch(`${BASE}posts.json`)
       .then((r) => r.json())
       .then((posts) => {
         const meta = posts.find((p) => p.slug === slug);
-        return fetch(`posts/${encodeURIComponent(slug)}.md`).then((r) => {
+        return fetch(`${BASE}posts/${encodeURIComponent(slug)}.md`).then((r) => {
           if (!r.ok) throw new Error("post not found");
           return r.text().then((md) => ({ meta, md }));
         });
